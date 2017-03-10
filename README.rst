@@ -25,11 +25,16 @@ Installation
 
     url(r'^trumbowyg/', include('trumbowyg.urls'))
 
-4. Sometimes you might want to limit size of uploaded images, e.g. if it is too large. In this case just put in settings::
+4. Sometimes you might want to limit size of uploaded images, e.g. if they are too large. In this case just put in settings (if you omit this, the image will be uploaded unchanged)::
 
     TRUMBOWYG_THUMBNAIL_SIZE = (1920, 1080)
 	
-If you omit this, the image will be uploaded unchanged.
+5. The package will look for ``LANGUAGES`` setting. Please make sure you have set it otherwise **ALL** available language files will be loaded, and apparently this is not what you want::
+
+    LANGUAGES = (
+        ('en', 'English'),
+        ('ru', 'Russian'),
+    )
 
 
 Usage
