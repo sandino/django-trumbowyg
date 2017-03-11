@@ -25,25 +25,32 @@ def upload_image(request):
     image_form = ImageForm(request.POST, request.FILES)
     if image_form.is_valid():
         image = image_form.cleaned_data['image']
-        path = os.path.join(_settings.UPLOAD_PATH, image.name)
-        if _settings.THUMBNAIL_SIZE:
-            im = Image.open(image)
-            initial_size = im.size
-            if im.size != initial_size:  # if original is larger than thumbnail
-                im.thumbnail(_settings.THUMBNAIL_SIZE)
-                real_path = os.path.join(_settings.UPLOAD_PATH,
-                                         'thumb_%s' % image.name)
-                try:
-                    im.save(os.path.join(settings.MEDIA_ROOT, real_path), "JPEG")
-                except IOError:
-                    print ("cannot create thumbnail for", image)
-            else:
-                real_path = default_storage.save(path, image)
-        else:
-            real_path = default_storage.save(path, image)
-        url = default_storage.url(real_path)
+        url = save_image(image)
         context = {'message': 'uploadSuccess', 'file': url}
     else:
         context = {'message': image_form.errors['image'][0]}
 
     return HttpResponse(json.dumps(context), content_type='application/json')
+
+
+def save_image(image):
+    """Receives image, saves it and returns its url"""
+    path = os.path.join(_settings.UPLOAD_PATH, image.name)
+    if _settings.THUMBNAIL_SIZE:
+        im = Image.open(image)
+        initial_size = im.size
+        im.thumbnail(_settings.THUMBNAIL_SIZE)
+        if im.size != initial_size:  # if original is larger than thumbnail
+            real_path = os.path.join(_settings.UPLOAD_PATH,
+                                     'thumb_%s' % image.name)
+            try:
+                im.save(os.path.join(settings.MEDIA_ROOT, real_path), "JPEG")
+                return real_path
+            except IOError:
+                print ("cannot create thumbnail for", image)
+                return
+
+    real_path = default_storage.save(path, image)
+
+    return default_storage.url(real_path)
+
