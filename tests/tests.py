@@ -50,12 +50,18 @@ class UploadTest(TestCase):
             **{'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'}
         )
         self.assertEqual(response.status_code, 200)
-        self.assertJSONEqual(response.content, {
+
+        if type(response.content) == bytes:
+            content = response.content.decode('utf-8')
+        else:
+            content = response.content
+        self.assertJSONEqual(content, {
             'message': 'uploadSuccess',
             'file': 'uploads/thumb_image.jpg'
         })
+
         # unlink test file
-        image_path = 'media/' + json.loads(response.content)['file']
+        image_path = 'media/' + json.loads(content)['file']
         if os.path.isfile(image_path):
             os.unlink(image_path)
 
