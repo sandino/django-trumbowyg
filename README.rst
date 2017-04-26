@@ -1,7 +1,7 @@
 Introduction
 ============
 
-django-trumbowyg is the Django-related reusable app for integrating `Trumbowyg WYSIWYG editor <http://alex-d.github.io/Trumbowyg/>`_. It is considered as one of the `best WYSIWYG editors <https://github.com/iDoRecall/comparisons/blob/master/JavaScript-WYSIWYG-editors.md>`_.
+django-trumbowyg is the Django-related reusable app for integrating `Trumbowyg WYSIWYG editor <http://alex-d.github.io/Trumbowyg/>`_. It is recognized as one of the `best WYSIWYG editors <https://github.com/iDoRecall/comparisons/blob/master/JavaScript-WYSIWYG-editors.md>`_.
 
 Initially this package was forked from `Django FS Trumbowyg <https://bitbucket.org/fogstream/django-fs-trumbowyg/>`_ package and then reworked.
 
@@ -35,6 +35,10 @@ Installation
         ('en', 'English'),
         ('ru', 'Russian'),
     )
+
+6. (Optional) If you wish image filenames to be transliterated, install `transliterate <https://pypi.python.org/pypi/transliterate>`_ from PyPi and set::
+
+    TRUMBOWYG_TRANSLITERATE_FILENAME = True
 
 
 Usage
