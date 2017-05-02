@@ -44,9 +44,7 @@ def save_image(image):
 
     if _settings.TRANSLITERATE_FILENAME:
         root, ext = os.path.splitext(filename)
-        print('{} - {}'.format(root, ext))
         filename = '{}{}'.format(slugify(root), ext)
-        print('filename: {}'.format(filename))
         
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
