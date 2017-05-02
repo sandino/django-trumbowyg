@@ -36,8 +36,7 @@ Installation
         ('ru', 'Russian'),
     )
 
-6. (Optional) If you wish image filenames to be transliterated, install `transliterate <https://pypi.python.org/pypi/transliterate>`_ from PyPi and set::
-
+6. (Optional) If you wish image filenames to be transliterated:
     TRUMBOWYG_TRANSLITERATE_FILENAME = True
 
 
