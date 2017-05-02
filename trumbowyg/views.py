@@ -10,6 +10,7 @@ from django.core.files.storage import default_storage
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.text import slugify
 
 from trumbowyg import settings as _settings
 from trumbowyg.forms import ImageForm
@@ -42,12 +43,11 @@ def save_image(image):
     filename = image.name
 
     if _settings.TRANSLITERATE_FILENAME:
-        try:
-            from transliterate import slugify
-            root, ext = os.path.splitext(filename)
-            filename = '{}{}'.format(slugify(root), ext)
-        except ImportError as e:
-            logger.error(e)
+        root, ext = os.path.splitext(filename)
+        print('{} - {}'.format(root, ext))
+        filename = '{}{}'.format(slugify(root), ext)
+        print('filename: {}'.format(filename))
+        
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
     if _settings.THUMBNAIL_SIZE:
