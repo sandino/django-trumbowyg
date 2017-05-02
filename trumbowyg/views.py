@@ -58,7 +58,7 @@ def save_image(image):
             real_path = os.path.join(_settings.UPLOAD_PATH,
                                      'thumb_%s' % filename)
             try:
-                im.save(os.path.join(settings.MEDIA_ROOT, real_path), "JPEG")
+                im.save(os.path.join(settings.MEDIA_ROOT, real_path), "PNG")
                 return default_storage.url(real_path)
             except IOError:
                 print ("cannot create thumbnail for", image)
