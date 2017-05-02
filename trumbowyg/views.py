@@ -2,6 +2,7 @@
 
 import os
 import json
+import uuid
 
 import logging
 from PIL import Image
@@ -44,7 +45,7 @@ def save_image(image):
 
     if _settings.TRANSLITERATE_FILENAME:
         root, ext = os.path.splitext(filename)
-        filename = '{}{}'.format(slugify(root), ext)
+        filename = '{}_{}{}'.format(slugify(root), str(uuid.uuid4())[:8], ext)
         
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
