@@ -3,7 +3,12 @@ from django.conf import settings
 from django.forms.widgets import Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, get_language_info
-from django.core.urlresolvers import reverse
+
+try:
+    from django.urls import reverse
+except ImportError:
+    # For old versions of django
+    from django.core.urlresolvers import reverse
 
 
 class TrumbowygWidget(Textarea):
