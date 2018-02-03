@@ -23,6 +23,7 @@ class TrumbowygWidget(Textarea):
             '//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
             'trumbowyg/trumbowyg.min.js',
             'trumbowyg/plugins/upload/trumbowyg.upload.js',
+            'trumbowyg/plugins/noembed/trumbowyg.noembed.min.js'
         ] + ['trumbowyg/langs/%s.min.js' % x[0] for x in settings.LANGUAGES]
 
     def render(self, name, value, attrs=None):
