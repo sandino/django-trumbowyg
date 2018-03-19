@@ -28,13 +28,8 @@ Installation
 4. Sometimes you might want to limit size of uploaded images, e.g. if they are too large. In this case just put in settings (if you omit this, the image will be uploaded unchanged)::
 
     TRUMBOWYG_THUMBNAIL_SIZE = (1920, 1080)
-	
-5. The package will look for ``LANGUAGES`` setting. Please make sure you have set it otherwise **ALL** available language files will be loaded, and apparently this is not what you want::
 
-    LANGUAGES = (
-        ('en', 'English'),
-        ('ru', 'Russian'),
-    )
+5. The package will try to use the language defined in ``LANGUAGE_CODE`` and if this language isin't availabe the default is ``en`` 
 
 6. (Optional) If you wish image filenames to be transliterated, install `transliterate <https://pypi.python.org/pypi/transliterate>`_ from PyPi and set::
 

@@ -2,13 +2,24 @@
 from django.conf import settings
 from django.forms.widgets import Textarea
 from django.utils.safestring import mark_safe
-from django.utils.translation import get_language, get_language_info
+from django.utils.translation import get_language
 
 try:
     from django.urls import reverse
 except ImportError:
     # For old versions of django
     from django.core.urlresolvers import reverse
+
+
+def get_trumbowyg_language():
+    """
+    Converte language from django to trumbowyg formate
+
+    Example:
+        Django uses: pt-br and trumbowyg use pt_br
+    """
+    return get_language().replace('-', '_')
+
 
 
 class TrumbowygWidget(Textarea):
@@ -23,7 +34,8 @@ class TrumbowygWidget(Textarea):
             '//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
             'trumbowyg/trumbowyg.min.js',
             'trumbowyg/plugins/upload/trumbowyg.upload.js',
-        ] + ['trumbowyg/langs/%s.min.js' % x[0] for x in settings.LANGUAGES]
+            'trumbowyg/langs/{0}.min.js'.format(get_trumbowyg_language())
+        ]
 
     def render(self, name, value, attrs=None):
         output = super(TrumbowygWidget, self).render(name, value, attrs)
@@ -64,6 +76,6 @@ class TrumbowygWidget(Textarea):
                     }
                 });
             </script>
-        ''' % (name, get_language_info(get_language())['code'], reverse('trumbowyg_upload_image'))
+        ''' % (name, get_trumbowyg_language(), reverse('trumbowyg_upload_image'))
         output += mark_safe(script)
         return output
