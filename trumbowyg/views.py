@@ -3,7 +3,6 @@
 import os
 import json
 
-import logging
 from PIL import Image
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -13,17 +12,16 @@ from django.views.decorators.http import require_POST
 
 from trumbowyg import settings as _settings
 from trumbowyg.forms import ImageForm
-
-logger = logging.getLogger(__name__)
+from trumbowyg.utils import slugify
 
 
 @csrf_exempt
 @require_POST
 def upload_image(request):
     if not request.is_ajax():
-        return HttpResponse(status=400)    # bad request
+        return HttpResponse(status=400)
     if not (request.user.is_active and request.user.is_staff):
-        return HttpResponse(status=403)    # forbidden
+        return HttpResponse(status=403)
 
     image_form = ImageForm(request.POST, request.FILES)
     if image_form.is_valid():
@@ -41,13 +39,8 @@ def save_image(image):
 
     filename = image.name
 
-    if _settings.TRANSLITERATE_FILENAME:
-        try:
-            from transliterate import slugify
-            root, ext = os.path.splitext(filename)
-            filename = '{}{}'.format(slugify(root), ext)
-        except ImportError as e:
-            logger.error(e)
+    root, ext = os.path.splitext(filename)
+    filename = '{}{}'.format(slugify(root), ext)
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
     if _settings.THUMBNAIL_SIZE:
