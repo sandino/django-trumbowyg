@@ -31,7 +31,7 @@ Installation
 
 5. The package will try to use the language defined in ``LANGUAGE_CODE`` and if this language isin't availabe the default is ``en`` 
 
-6. (Optional) If you wish image filenames to be transliterated, install `transliterate <https://pypi.python.org/pypi/transliterate>`_ from PyPi and set::
+6. (Optional) If you wish image filenames to be transliterated, install `unidecode <https://pypi.org/project/Unidecode/>`_ from PyPi and set::
 
     TRUMBOWYG_TRANSLITERATE_FILENAME = True
 
