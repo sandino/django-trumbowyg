@@ -26,6 +26,12 @@
                 errFileReaderNotSupported: 'FileReader is not supported by your browser.',
                 errInvalidImage: 'Invalid image file.'
             },
+            da: {
+                base64: 'Billede som base64',
+                file: 'Fil',
+                errFileReaderNotSupported: 'FileReader er ikke understøttet af din browser.',
+                errInvalidImage: 'Ugyldig billedfil.'
+            },
             fr: {
                 base64: 'Image en base64',
                 file: 'Fichier'
@@ -39,9 +45,35 @@
                 file: '文件'
             },
             nl: {
+                base64: 'Afbeelding inline',
+                file: 'Bestand',
                 errFileReaderNotSupported: 'Uw browser ondersteunt deze functionaliteit niet.',
                 errInvalidImage: 'De gekozen afbeelding is ongeldig.'
-            }
+            },
+            ru: {
+                base64: 'Изображение как код в base64',
+                file: 'Файл',
+                errFileReaderNotSupported: 'FileReader не поддерживается вашим браузером.',
+                errInvalidImage: 'Недопустимый файл изображения.'
+            },
+            ja: {
+                base64: '画像 (Base64形式)',
+                file: 'ファイル',
+                errFileReaderNotSupported: 'あなたのブラウザーはFileReaderをサポートしていません',
+                errInvalidImage: '画像形式が正しくありません'
+            },
+            tr: {
+                base64: 'Base64 olarak resim',
+                file: 'Dosya',
+                errFileReaderNotSupported: 'FileReader tarayıcınız tarafından desteklenmiyor.',
+                errInvalidImage: 'Geçersiz resim dosyası.'
+            },
+            zh_tw: {
+                base64: '圖片(base64編碼)',
+                file: '檔案',
+                errFileReaderNotSupported: '你的瀏覽器不支援FileReader',
+                errInvalidImage: '不正確的檔案格式'
+             },
         },
         // jshint camelcase:true
 

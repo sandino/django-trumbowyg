@@ -92,3 +92,7 @@ ENV/
 /media/
 .pypirc
 
+# npm
+node_modules/
+package.json
+package-lock.json

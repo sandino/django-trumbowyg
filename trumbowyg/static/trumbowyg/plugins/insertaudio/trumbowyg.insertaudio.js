@@ -35,6 +35,21 @@
         langs: {
             en: {
                 insertAudio: 'Insert Audio'
+            },
+            da: {
+                insertAudio: 'Indsæt lyd'
+            },
+            fr: {
+                insertAudio: 'Insérer un son'
+            },
+            ru: {
+                insertAudio: 'Вставить аудио'
+            },
+            ja: {
+                insertAudio: '音声の挿入'
+            },
+            tr: {
+                insertAudio: 'Ses Ekle'
             }
         },
         plugins: {
