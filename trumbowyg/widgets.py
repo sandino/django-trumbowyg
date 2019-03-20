@@ -3,6 +3,8 @@ from django.forms.widgets import Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
 
+from . import settings
+
 try:
     from django.urls import reverse
 except ImportError:
@@ -39,41 +41,45 @@ class TrumbowygWidget(Textarea):
         output = super(TrumbowygWidget, self).render(name, value, attrs)
         script = u'''
             <script>
-                $("#id_%s").trumbowyg({
-                    lang: "%s",
-                    semantic: true,
+                $("#id_{name}").trumbowyg({{
+                    lang: "{lang}",
+                    semantic: {semantic},
                     resetCss: true,
                     autogrow: true,
                     removeformatPasted: true,
-                    btnsDef: {
-                        image: {
-                            dropdown: ['upload', 'insertImage', 'base64', 'noembed'],
-                            ico: 'insertImage'
-                        }
-                    },
+                    btnsDef: {{
+                        image: {{
+                            dropdown: ["upload", "insertImage", "base64", "noembed"],
+                            ico: "insertImage"
+                        }}
+                    }},
                     btns: [
-                        ['formatting'],
-                        'btnGrp-semantic',
-                        ['link'],
-                        ['image'],
-                        'btnGrp-justify',
-                        'btnGrp-lists',
-                        'video',
-                        ['horizontalRule'],
-                        ['removeformat'],
-                        ['fullscreen'],
-                        ['viewHTML']
+                        ["formatting"],
+                        "btnGrp-semantic",
+                        ["link"],
+                        ["image"],
+                        "btnGrp-justify",
+                        "btnGrp-lists",
+                        ["horizontalRule"],
+                        ["removeformat"],
+                        ["viewHTML"],
+                        ["fullscreen"]
                     ],
-                    plugins: {
-                        upload: {
-                            serverPath: '%s',
-                            fileFieldName: 'image',
-                            statusPropertyName: 'message',
-                            urlPropertyName: 'file'
-                        }
-                    }
-                });
+                    plugins: {{
+                        upload: {{
+                            serverPath: "{path}",
+                            fileFieldName: "image",
+                            statusPropertyName: "message",
+                            urlPropertyName: "file"
+                        }}
+                    }}
+                }});
             </script>
-        ''' % (name, get_trumbowyg_language(), reverse('trumbowyg_upload_image'))
+        '''.format(
+            name=name,
+            lang=get_trumbowyg_language(),
+            semantic=settings.SEMANTIC,
+            path=reverse('trumbowyg_upload_image'),
+        )
         output += mark_safe(script)
         return output

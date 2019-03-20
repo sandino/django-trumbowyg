@@ -35,6 +35,9 @@ Installation
 
     TRUMBOWYG_TRANSLITERATE_FILENAME = True
 
+7. Set [semantics](https://alex-d.github.io/Trumbowyg/documentation/#semantic) if necessary. It defaults to ``false``::
+
+    TRUMBOWYG_SEMANTIC = 'true'
 
 Usage
 =====
