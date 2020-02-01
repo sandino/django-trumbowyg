@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.conf import settings as django_settings
 from django.forms.widgets import Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import get_language
@@ -14,12 +15,13 @@ except ImportError:
 
 def get_trumbowyg_language():
     """
-    Convert language from django to trumbowyg format
+    Get and convert language from django to trumbowyg format
 
     Example:
         Django uses: pt-br and trumbowyg use pt_br
     """
-    return get_language().replace('-', '_')
+    language = getattr(settings, 'TRUMBOWYG_LANGUAGE', django_settings.LANGUAGE_CODE)
+    return language.replace('-', '_')
 
 
 class TrumbowygWidget(Textarea):

@@ -91,6 +91,7 @@ ENV/
 .idea/
 /media/
 .pypirc
+.vscode
 
 # npm
 node_modules/
