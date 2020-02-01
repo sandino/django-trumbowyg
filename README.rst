@@ -39,6 +39,8 @@ Installation
 
     TRUMBOWYG_SEMANTIC = 'true'
 
+8. Don't forget to add ``{{ form.media }}`` to form template.
+
 Usage
 =====
 
