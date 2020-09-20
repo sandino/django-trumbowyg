@@ -1,5 +1,5 @@
 import logging
-from django.utils import six
+import six
 from django.utils.text import slugify as django_slugify
 
 from trumbowyg import settings as _settings
