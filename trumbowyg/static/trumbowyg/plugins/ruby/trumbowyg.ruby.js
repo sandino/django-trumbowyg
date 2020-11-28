@@ -13,6 +13,7 @@
 
     $.extend(true, $.trumbowyg, {
         langs: {
+            // jshint camelcase:false
             en: {
                 ruby: 'Add ruby text',
                 rubyModal: 'Ruby modal',
@@ -28,10 +29,25 @@
                 rubyModal: 'Modale ruby',
                 rubyText: 'Texte ruby'
             },
+            hu: {
+                ruby: 'Ruby szöveg hozzáadás',
+                rubyModal: 'Ruby modal',
+                rubyText: 'Ruby szöveg'
+            },
             id: {
                 ruby: 'Sisipkan teks ruby',
                 rubyModal: 'Modal teks ruby',
                 rubyText: 'Teks ruby'
+            },
+            ko: {
+                ruby: '루비 문자 넣기',
+                rubyModal: '대상 문자',
+                rubyText: '루비 문자'
+            },
+            pt_br: {
+                ruby: 'Adicionar texto ruby',
+                rubyModal: 'Modal ruby',
+                rubyText: 'Texto ruby'
             },
             tr: {
                 ruby: 'Ruby metni ekle',
@@ -43,6 +59,7 @@
                 rubyModal: 'Ruby 彈跳視窗',
                 rubyText: 'Ruby 文字'
             },
+            // jshint camelcase:true
         },
         plugins: {
             ruby: {

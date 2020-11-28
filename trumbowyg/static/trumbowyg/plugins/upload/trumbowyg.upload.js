@@ -21,7 +21,7 @@
         headers: {},                    // Additional headers
         xhrFields: {},                  // Additional fields
         urlPropertyName: 'file',        // How to get url from the json response (for instance 'url' for {url: ....})
-        statusPropertyName: 'success',  // How to get status from the json response 
+        statusPropertyName: 'success',  // How to get status from the json response
         success: undefined,             // Success callback: function (data, trumbowyg, $modal, values) {}
         error: undefined,               // Error callback: function () {}
         imageWidthModalEdit: false      // Add ability to edit image width
@@ -53,25 +53,60 @@
                 file: 'File',
                 uploadError: 'Error'
             },
+            cs: {
+                upload: 'Nahrát obrázek',
+                file: 'Soubor',
+                uploadError: 'Chyba'
+            },
             da: {
                 upload: 'Upload',
                 file: 'Fil',
                 uploadError: 'Fejl'
             },
-            sk: {
-                upload: 'Nahrať',
-                file: 'Súbor',
-                uploadError: 'Chyba'
+            de: {
+                upload: 'Hochladen',
+                file: 'Datei',
+                uploadError: 'Fehler'
             },
             fr: {
                 upload: 'Envoi',
                 file: 'Fichier',
                 uploadError: 'Erreur'
             },
-            cs: {
-                upload: 'Nahrát obrázek',
-                file: 'Soubor',
+            hu: {
+                upload: 'Feltöltés',
+                file: 'Fájl',
+                uploadError: 'Hiba'
+            },
+            ja: {
+                upload: 'アップロード',
+                file: 'ファイル',
+                uploadError: 'エラー'
+            },
+            ko: {
+                upload: '그림 올리기',
+                file: '파일',
+                uploadError: '에러'
+            },
+            pt_br: {
+                upload: 'Enviar do local',
+                file: 'Arquivo',
+                uploadError: 'Erro'
+            },
+            ru: {
+                upload: 'Загрузка',
+                file: 'Файл',
+                uploadError: 'Ошибка'
+            },
+            sk: {
+                upload: 'Nahrať',
+                file: 'Súbor',
                 uploadError: 'Chyba'
+            },
+            tr: {
+                upload: 'Yükle',
+                file: 'Dosya',
+                uploadError: 'Hata'
             },
             zh_cn: {
                 upload: '上传',
@@ -83,26 +118,6 @@
                 file: '文件',
                 uploadError: '錯誤'
             },
-            ru: {
-                upload: 'Загрузка',
-                file: 'Файл',
-                uploadError: 'Ошибка'
-            },
-            ja: {
-                upload: 'アップロード',
-                file: 'ファイル',
-                uploadError: 'エラー'
-            },
-            pt_br: {
-                upload: 'Enviar do local',
-                file: 'Arquivo',
-                uploadError: 'Erro'
-            },
-            tr: {
-                upload: 'Yükle',
-                file: 'Dosya',
-                uploadError: 'Hata'
-            }
         },
         // jshint camelcase:true
 
@@ -137,6 +152,9 @@
                                 };
                             }
 
+                            // Prevent multiple submissions while uploading
+                            var isUploading = false;
+
                             var $modal = trumbowyg.openModalInsert(
                                 // Title
                                 trumbowyg.lang.upload,
@@ -146,6 +164,11 @@
 
                                 // Callback
                                 function (values) {
+                                    if (isUploading) {
+                                        return;
+                                    }
+                                    isUploading = true;
+
                                     var data = new FormData();
                                     data.append(trumbowyg.o.plugins.upload.fileFieldName, file);
 
@@ -193,10 +216,10 @@
                                             } else {
                                                 if (!!getDeep(data, trumbowyg.o.plugins.upload.statusPropertyName.split('.'))) {
                                                     var url = getDeep(data, trumbowyg.o.plugins.upload.urlPropertyName.split('.'));
-                                                    trumbowyg.execCmd('insertImage', url);
+                                                    trumbowyg.execCmd('insertImage', url, false, true);
                                                     var $img = $('img[src="' + url + '"]:not([alt])', trumbowyg.$box);
                                                     $img.attr('alt', values.alt);
-                                                    if (trumbowyg.o.imageWidthModalEdit && parseInt(values.width) > 0) {
+                                                    if (trumbowyg.o.plugins.upload.imageWidthModalEdit && parseInt(values.width) > 0) {
                                                         $img.attr({
                                                             width: values.width
                                                         });
@@ -213,6 +236,8 @@
                                                     trumbowyg.$c.trigger('tbwuploaderror', [trumbowyg, data]);
                                                 }
                                             }
+
+                                            isUploading = false;
                                         },
 
                                         error: trumbowyg.o.plugins.upload.error || function () {
@@ -221,6 +246,8 @@
                                                 trumbowyg.lang.uploadError
                                             );
                                             trumbowyg.$c.trigger('tbwuploaderror', [trumbowyg]);
+
+                                            isUploading = false;
                                         }
                                     });
                                 }
@@ -249,8 +276,9 @@
             var originalXhr = $.ajaxSettings.xhr;
             $.ajaxSetup({
                 xhr: function () {
-                    var req = originalXhr(),
-                        that = this;
+                    var that = this,
+                        req = originalXhr();
+
                     if (req && typeof req.upload === 'object' && that.progressUpload !== undefined) {
                         req.upload.addEventListener('progress', function (e) {
                             that.progressUpload(e);

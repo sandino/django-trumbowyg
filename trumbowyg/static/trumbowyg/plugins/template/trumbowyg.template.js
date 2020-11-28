@@ -4,23 +4,36 @@
     // Adds the language variables
     $.extend(true, $.trumbowyg, {
         langs: {
+            // jshint camelcase:false
             en: {
                 template: 'Template'
             },
             da: {
                 template: 'Skabelon'
             },
+            de: {
+                template: 'Vorlage'
+            },
             fr: {
                 template: 'Patron'
+            },
+            hu: {
+                template: 'Sablon'
+            },
+            ja: {
+                template: 'テンプレート'
+            },
+            ko: {
+                template: '서식'
             },
             nl: {
                 template: 'Sjabloon'
             },
+            pt_br: {
+                template: 'Modelo'
+            },
             ru: {
                 template: 'Шаблон'
-            },
-            ja: {
-                template: 'テンプレート'
             },
             tr: {
                 template: 'Şablon'
@@ -28,6 +41,7 @@
             zh_tw: {
                 template: '模板',
             },
+            // jshint camelcase:true
         }
     });
 
