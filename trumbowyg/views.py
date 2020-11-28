@@ -3,7 +3,6 @@
 import os
 import json
 
-from PIL import Image
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
@@ -44,6 +43,8 @@ def save_image(image):
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
     if _settings.THUMBNAIL_SIZE:
+        from PIL import Image
+
         im = Image.open(image)
         initial_size = im.size
         im.thumbnail(_settings.THUMBNAIL_SIZE)

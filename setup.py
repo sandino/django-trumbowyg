@@ -10,10 +10,12 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-trumbowyg',
-    version='1.1.1',
+    version='1.1.2',
     packages=['trumbowyg'],
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        'six'
+    ],
     author='sandino',
     author_email='vdjangofan@gmail.com',
     url='https://github.com/sandino/django-trumbowyg',
