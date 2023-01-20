@@ -17,7 +17,8 @@ from trumbowyg.utils import slugify
 @csrf_exempt
 @require_POST
 def upload_image(request):
-    if not request.is_ajax():
+    # Validate if the request is an ajax request
+    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
         return HttpResponse(status=400)
     if not (request.user.is_active and request.user.is_staff):
         return HttpResponse(status=403)
@@ -35,7 +36,6 @@ def upload_image(request):
 
 def save_image(image):
     """Receives image, saves it and returns its url"""
-
     filename = image.name
 
     root, ext = os.path.splitext(filename)
@@ -61,4 +61,3 @@ def save_image(image):
     real_path = default_storage.save(path, image)
 
     return default_storage.url(real_path)
-
