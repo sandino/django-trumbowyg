@@ -1,7 +1,5 @@
-# coding=utf-8
-
-import os
 import json
+import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -18,20 +16,20 @@ from trumbowyg.utils import slugify
 @require_POST
 def upload_image(request):
     # Validate if the request is an ajax request
-    if request.META.get('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest':
+    if request.META.get("HTTP_X_REQUESTED_WITH") != "XMLHttpRequest":
         return HttpResponse(status=400)
     if not (request.user.is_active and request.user.is_staff):
         return HttpResponse(status=403)
 
     image_form = ImageForm(request.POST, request.FILES)
     if image_form.is_valid():
-        image = image_form.cleaned_data['image']
+        image = image_form.cleaned_data["image"]
         url = save_image(image)
-        context = {'message': 'uploadSuccess', 'file': url}
+        context = {"message": "uploadSuccess", "file": url}
     else:
-        context = {'message': image_form.errors['image'][0]}
+        context = {"message": image_form.errors["image"][0]}
 
-    return HttpResponse(json.dumps(context), content_type='application/json')
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 
 def save_image(image):
@@ -39,7 +37,7 @@ def save_image(image):
     filename = image.name
 
     root, ext = os.path.splitext(filename)
-    filename = '{}{}'.format(slugify(root), ext)
+    filename = "{}{}".format(slugify(root), ext)
     path = os.path.join(_settings.UPLOAD_PATH, filename)
 
     if _settings.THUMBNAIL_SIZE:
@@ -49,13 +47,12 @@ def save_image(image):
         initial_size = im.size
         im.thumbnail(_settings.THUMBNAIL_SIZE)
         if im.size != initial_size:  # if original is larger than thumbnail
-            real_path = os.path.join(_settings.UPLOAD_PATH,
-                                     'thumb_%s' % filename)
+            real_path = os.path.join(_settings.UPLOAD_PATH, "thumb_%s" % filename)
             try:
                 im.save(os.path.join(settings.MEDIA_ROOT, real_path), "JPEG")
                 return default_storage.url(real_path)
             except IOError:
-                print ("cannot create thumbnail for", image)
+                print("cannot create thumbnail for", image)
                 return
 
     real_path = default_storage.save(path, image)

@@ -1,9 +1,9 @@
-from PIL import Image
+from tempfile import NamedTemporaryFile
+
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
-
-from tempfile import NamedTemporaryFile
+from PIL import Image
 
 
 def create_image():

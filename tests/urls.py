@@ -1,6 +1,5 @@
-from django.conf.urls import url, include
-
+from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^', include('trumbowyg.urls')),
+    url(r"^", include("trumbowyg.urls")),
 ]

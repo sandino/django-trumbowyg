@@ -1,4 +1,5 @@
 import logging
+
 import six
 from django.utils.text import slugify as django_slugify
 
@@ -11,6 +12,7 @@ def slugify(value):
     if _settings.TRANSLITERATE_FILENAME:
         try:
             from unidecode import unidecode
+
             value = unidecode(six.text_type(value))
         except ImportError as e:
             logger.exception(e)
