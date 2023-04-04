@@ -7,14 +7,26 @@
             en: {
                 fontFamily: 'Font'
             },
-            es: {
-                fontFamily: 'Fuente'
+            az: {
+                fontFamily: 'Şrift'
+            },
+            by: {
+                fontFamily: 'Шрыфт'
+            },
+            ca: {
+                fontFamily: 'Font'
             },
             da: {
                 fontFamily: 'Skrifttype'
             },
             de: {
                 fontFamily: 'Schriftart'
+            },
+            es: {
+                fontFamily: 'Fuente'
+            },
+            et: {
+                fontFamily: 'Font'
             },
             fr: {
                 fontFamily: 'Police'
@@ -31,8 +43,14 @@
             pt_br: {
                 fontFamily: 'Fonte',
             },
+            ru: {
+                fontFamily: 'Шрифт'
+            },
+            sl: {
+                fontFamily: 'Pisava'
+            },
             tr: {
-                fontFamily: 'Yazı Tipi'
+                fontFamily: 'Yazı tipi'
             },
             zh_tw: {
                 fontFamily: '字體',
