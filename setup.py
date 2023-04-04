@@ -11,9 +11,7 @@ setup(
     version='2.0.0',
     packages=['trumbowyg'],
     include_package_data=True,
-    install_requires=[
-        'six'
-    ],
+    install_requires=[],
     author='sandino',
     author_email='vdjangofan@gmail.com',
     url='https://github.com/sandino/django-trumbowyg',
