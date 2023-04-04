@@ -1,3 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-trumbowyg"
+version = "2.0.1"
+authors = [
+  { name="sandino", email="vdjangofan@gmail.com" },
+]
+description = "Trumbowyg (WYSIWYG editor) integration app for Django admin."
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sandino/django-trumbowyg"
+"Bug Tracker" = "https://github.com/sandino/django-trumbowyg/issues"
+
 [tool.isort]
 profile = "black"
 multi_line_output = 3
