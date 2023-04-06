@@ -3,8 +3,6 @@ Introduction
 
 django-trumbowyg is the Django-related reusable app for integrating `Trumbowyg WYSIWYG editor <http://alex-d.github.io/Trumbowyg/>`_. It is recognized as one of the `best WYSIWYG editors <https://github.com/iDoRecall/comparisons/blob/master/JavaScript-WYSIWYG-editors.md>`_.
 
-Initially this package was forked from `Django FS Trumbowyg <https://bitbucket.org/fogstream/django-fs-trumbowyg/>`_ package and then reworked.
-
 
 Installation
 ============
@@ -68,5 +66,4 @@ Use ``TrumbowygWidget`` in your forms::
 Credits
 =======
 
-- `Fogstream <http://fogstream.ru/>`_
 - `Alex-D <http://alex-d.fr/>`_
