@@ -30,6 +30,7 @@ class TrumbowygWidget(Textarea):
             "trumbowyg/trumbowyg.min.js",
             "trumbowyg/plugins/upload/trumbowyg.upload.js",
             "trumbowyg/langs/{0}.min.js".format(get_trumbowyg_language()),
+            "trumbowyg/admin.js",
         ]
 
     def render(self, name, value, attrs=None, renderer=None):
