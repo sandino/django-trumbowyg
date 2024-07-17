@@ -22,15 +22,17 @@ class TrumbowygWidget(Textarea):
         css = {
             "all": (
                 "trumbowyg/ui/trumbowyg.css",
-                "trumbowyg/admin.css",
             )
         }
         js = [
             "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js",
             "trumbowyg/trumbowyg.min.js",
             "trumbowyg/plugins/upload/trumbowyg.upload.js",
-            "trumbowyg/langs/{0}.min.js".format(get_trumbowyg_language()),
-        ]
+        ] + (
+            []
+            if get_trumbowyg_language().startswith("en")
+            else ["trumbowyg/langs/{0}.min.js".format(get_trumbowyg_language())]
+        )
 
     def render(self, name, value, attrs=None, renderer=None):
         output = super(TrumbowygWidget, self).render(name, value, attrs)
