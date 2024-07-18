@@ -21,14 +21,14 @@ class TrumbowygWidget(Textarea):
     class Media:
         css = {
             "all": (
-                "trumbowyg/ui/trumbowyg.css",
+                "trumbowyg/ui/trumbowyg.min.css",
                 "trumbowyg/admin.css",
             )
         }
         js = [
             "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js",
             "trumbowyg/trumbowyg.min.js",
-            "trumbowyg/plugins/upload/trumbowyg.upload.js",
+            "trumbowyg/plugins/upload/trumbowyg.upload.min.js",
             "trumbowyg/langs/{0}.min.js".format(get_trumbowyg_language()),
         ]
 
