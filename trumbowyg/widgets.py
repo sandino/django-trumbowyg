@@ -64,7 +64,7 @@ class TrumbowygWidget(Textarea):
                         upload: {{
                             serverPath: "{path}",
                             fileFieldName: "image",
-                            statusPropertyName: "message",
+                            statusPropertyName: "success",
                             urlPropertyName: "file"
                         }}
                     }}

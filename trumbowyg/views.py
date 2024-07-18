@@ -25,9 +25,13 @@ def upload_image(request):
     if image_form.is_valid():
         image = image_form.cleaned_data["image"]
         url = save_image(image)
-        context = {"message": "uploadSuccess", "file": url}
+        context = {"success": True, "file": url}
     else:
-        context = {"message": image_form.errors["image"][0]}
+        context = {
+            "success": False,
+            "message": "uploadError",
+            "detail": image_form.errors["image"][0],
+        }
 
     return HttpResponse(json.dumps(context), content_type="application/json")
 
