@@ -9,7 +9,10 @@ authors = [
   { name="sandino", email="vdjangofan@gmail.com" },
 ]
 description = "Trumbowyg (WYSIWYG editor) integration app for Django admin."
-readme = "README.md"
+readme = "README.rst"
+dependencies = [
+    "pillow",
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Web Environment",
@@ -19,6 +22,7 @@ classifiers = [
     "Framework :: Django",
     "License :: OSI Approved :: MIT License",
 ]
+dynamic = ["license"]
 
 [project.urls]
 "Homepage" = "https://github.com/sandino/django-trumbowyg"
